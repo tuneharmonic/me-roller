@@ -9,10 +9,6 @@ export class KeyValue<T> {
 }
 
 export class EnumType<T> extends Array<KeyValue<T>> {
-    constructor(...keyValues: Array<KeyValue<T>>){
-        super(...keyValues);
-    }
-
     getValue(key: string): T | undefined {
         return this.find(keyValue => keyValue.key === key)?.value;
     }

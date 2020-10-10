@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
-import NumberInput from './components/NumberInput';
 import './App.css';
+import Weapon from './models/Weapon';
+import WeaponType from './models/WeaponType';
+import FireType from './models/FireType';
+import WeaponInput from './components/WeaponInput';
 
 function App() {
-  const [values, setValues] = useState({
-    health: 10,
-    damage: 5
-  });
-
-  function setHealth(value: number) {
-    const newValues = { ...values, health: value };
-    setValues(newValues);
-  }
-
-  function setDamage(value: number) {
-    const newValues = { ...values, damage: value };
-    setValues(newValues);
-  }
+  const [weapon, setWeapon] = useState(new Weapon(
+    'M8 Avenger',
+    'Standard issue alliance military assault rifle. Has quickly become a widely adopted defense platform across the galaxy.',
+    WeaponType.getValue('ARifle') || '',
+    [4],
+    0,
+    0,
+    20,
+    2,
+    4,
+    FireType.getValue('Auto') || '',
+    2));
 
   return (
     <div className="App">
-      <NumberInput name="health" text="Health" value={values.health} onChange={setHealth} />
-      <NumberInput name="damage" text="Weapon Damage" value={values.damage} onChange={setDamage} positiveOnly />
+      <WeaponInput weapon={weapon} onChange={setWeapon} />
     </div>
   );
 }

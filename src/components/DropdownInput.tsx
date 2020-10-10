@@ -4,7 +4,7 @@ import { EnumType } from '../models/EnumType';
 function DropdownInput(props: { name: string, text: string, value: any, valueType: EnumType<any>, onChange: Function }) {
 
     function renderOption(optionValue: any, text: string) {
-        return <option value={optionValue.toString()}>{text}</option>;
+        return <option key={optionValue.toString()} value={optionValue.toString()}>{text}</option>;
     }
 
     function handleChange(event: ChangeEvent<HTMLSelectElement>) {

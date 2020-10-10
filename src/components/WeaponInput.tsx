@@ -5,52 +5,38 @@ import FireType from '../models/FireType';
 import NumberInput from './NumberInput';
 import DropdownInput from './DropdownInput';
 
-function WeaponInput(props: {weapon: Weapon}) {
-
-    // get this from parent
-    props.weapon = new Weapon(
-    'M8 Avenger',
-    'Standard issue alliance military assault rifle. Has quickly become a widely adopted defense platform across the galaxy.',
-    WeaponType.getValue('ARifle') || '',
-    [4],
-    0,
-    0,
-    20,
-    2,
-    4,
-    FireType.getValue('Auto') || '',
-    2);
-
+function WeaponInput(props: {weapon: Weapon, onChange: Function}) {
+    
     function handleWeaponType(weaponType: string) {
-        props.weapon.weaponType = weaponType;
+        props.onChange({ ...props.weapon, weaponType });
     }
 
     function handleDamageBonus(damageBonus: number) {
-        props.weapon.damageBonus = damageBonus;
+        props.onChange({ ...props.weapon, damageBonus });
     }
     
     function handleAttackBonus(attackBonus: number) {
-        props.weapon.attackBonus = attackBonus;
+        props.onChange({ ...props.weapon, attackBonus });
     }
     
-    function handleCritRange(attackBonus: number) {
-        props.weapon.attackBonus = attackBonus;
+    function handleCritRange(critRange: number) {
+        props.onChange({ ...props.weapon, critRange });
     }
     
-    function handleCritMultiplier(attackBonus: number) {
-        props.weapon.attackBonus = attackBonus;
+    function handleCritMultiplier(critMultiplier: number) {
+        props.onChange({ ...props.weapon, critMultiplier });
     }
     
-    function handleRateOfFire(attackBonus: number) {
-        props.weapon.attackBonus = attackBonus;
+    function handleRateOfFire(rateOfFire: number) {
+        props.onChange({ ...props.weapon, rateOfFire });
     }
 
     function handleFireType(fireType: string) {
-        props.weapon.fireType = fireType;
+        props.onChange({ ...props.weapon, fireType });
     }
     
-    function handleRecoil(attackBonus: number) {
-        props.weapon.attackBonus = attackBonus;
+    function handleRecoil(recoil: number) {
+        props.onChange({ ...props.weapon, recoil });
     }
 
     return (
