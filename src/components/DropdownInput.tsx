@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
-import { EnumType } from '../models/EnumType';
+import EnumType from '../models/EnumType';
 
-function DropdownInput(props: { name: string, text: string, value: any, valueType: EnumType<any>, onChange: Function }) {
+function DropdownInput(props: { name: string, text: string, value: any, valueType: EnumType<any>, onChange(value: string): void }) {
 
     function renderOption(optionValue: any, text: string) {
         return <option key={optionValue.toString()} value={optionValue.toString()}>{text}</option>;

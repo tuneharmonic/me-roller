@@ -1,12 +1,12 @@
-import { EnumType, KeyValue } from "./EnumType";
+import EnumType from "./EnumType";
 
 const CoverType: EnumType<number> = new EnumType<number>(
-    new KeyValue("Open", 0),
-    new KeyValue("Quarter", 2),
-    new KeyValue("Half", 4),
-    new KeyValue("Three Quarters", 7),
-    new KeyValue("Massive", 10),
-    new KeyValue("Total", 999)
+    { key: "Open", value: 0 },
+    { key: "Quarter", value: 2 },
+    { key: "Half", value: 4 },
+    { key: "Three Quarters", value: 7 },
+    { key: "Massive", value: 10 },
+    { key: "Total", value: 999 }
 );
 
 export default CoverType;

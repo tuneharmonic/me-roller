@@ -1,11 +1,11 @@
-import { EnumType, KeyValue } from "./EnumType";
+import EnumType from "./EnumType";
 
 const FireType: EnumType<string> = new EnumType<string>(
-    new KeyValue("SingleShot", "Single Shot"),
-    new KeyValue("SemiAuto", "Semi-Automatic"),
-    new KeyValue("Burst", "Burst Fire"),
-    new KeyValue("Auto", "Automatic"),
-    new KeyValue("Melee", "Melee")
+    { key: "Single Shot", value: "SingleShot" },
+    { key: "Semi-Automatic", value: "SemiAuto" },
+    { key: "Burst Fire", value: "Burst" },
+    { key: "Automatic", value: "Auto" },
+    { key: "Melee", value: "Melee" }
 );
 
 export default FireType;

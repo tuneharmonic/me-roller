@@ -4,8 +4,18 @@ import WeaponType from '../models/WeaponType';
 import FireType from '../models/FireType';
 import NumberInput from './NumberInput';
 import DropdownInput from './DropdownInput';
+import TextInput from './TextInput';
+import TextAreaInput from './TextAreaInput';
 
-function WeaponInput(props: {weapon: Weapon, onChange: Function}) {
+function WeaponInput(props: { weapon: Weapon, onChange(weapon: Weapon): void }) {
+
+    function handleName(name: string) {
+        props.onChange({ ...props.weapon, name });
+    }
+
+    function handleDescription(description: string) {
+        props.onChange({ ...props.weapon, description });
+    }
     
     function handleWeaponType(weaponType: string) {
         props.onChange({ ...props.weapon, weaponType });
@@ -41,6 +51,8 @@ function WeaponInput(props: {weapon: Weapon, onChange: Function}) {
 
     return (
         <div className='WeaponInput'>
+            <TextInput name='name' text='Name' value={props.weapon.name} onChange={handleName} />
+            <TextAreaInput name='description' text='Description' value={props.weapon.description} onChange={handleDescription} />
             <DropdownInput name='weaponType' text='Weapon Type' value={props.weapon.weaponType} valueType={WeaponType} onChange={handleWeaponType} />
             <NumberInput name='damageBonus' text='Damage Bonus' value={props.weapon.damageBonus} onChange={handleDamageBonus} />
             <NumberInput name='attackBonus' text='Attack Bonus' value={props.weapon.attackBonus} onChange={handleAttackBonus} />

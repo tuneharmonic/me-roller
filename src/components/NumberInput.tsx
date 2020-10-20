@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import './NumberInput.css';
 
-function NumberInput(props: { name: string, text: string, value: number, positiveOnly?: boolean, onChange: Function }) {
+function NumberInput(props: { name: string, text: string, value: number, positiveOnly?: boolean, onChange(value: number): void }) {
     function validate(value: number): boolean {
         let valid = true;
 

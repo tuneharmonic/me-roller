@@ -1,13 +1,13 @@
-import { EnumType, KeyValue } from "./EnumType";
+import EnumType from "./EnumType";
 
 const WeaponType: EnumType<string> = new EnumType<string>(
-    new KeyValue("Pistol", "Pistol"),
-    new KeyValue("SMG", "SMG"),
-    new KeyValue("ARifle", "Assault Rifle"),
-    new KeyValue("Shotgun", "Shotgun"),
-    new KeyValue("Sniper", "Sniper Rifle"),
-    new KeyValue("Heavy", "Heavy Weapon"),
-    new KeyValue("Melee", "Melee Weapon")
+    { key: "Pistol", value: "Pistol" },
+    { key: "SMG", value: "SMG" },
+    { key: "Assault Rifle", value: "ARifle" },
+    { key: "Shotgun", value: "Shotgun" },
+    { key: "Sniper Rifle", value: "Sniper" },
+    { key: "Heavy Weapon", value: "Heavy" },
+    { key: "Melee Weapon", value: "Melee" }
 );
 
 export default WeaponType;
