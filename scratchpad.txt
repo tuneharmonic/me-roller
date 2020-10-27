@@ -1,0 +1,11 @@
+Dice expression:
+/(\d*[dD]*\d+)([+\-*/])*/g
+
+Invalid characters:
+/([^+\-/*dD\d])/g
+
+Valid Math operators:
+/([+\-/*])/g
+
+Dice with preceeding operator:
+/([+\-/*]?)(\d*)([dD]?)(\d+)/g

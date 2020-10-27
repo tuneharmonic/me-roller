@@ -1,6 +1,4 @@
-import { stat } from "fs";
-
-export class Roll {
+export default class Roll {
     public static Die(die: number) : number {
         return Math.floor(Math.random() * die) + 1;
     }

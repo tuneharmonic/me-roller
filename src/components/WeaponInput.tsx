@@ -6,6 +6,8 @@ import NumberInput from './NumberInput';
 import DropdownInput from './DropdownInput';
 import TextInput from './TextInput';
 import TextAreaInput from './TextAreaInput';
+import DiceExpression from '../models/DiceExpression';
+import DiceInput from './DiceInput';
 
 function WeaponInput(props: { weapon: Weapon, onChange(weapon: Weapon): void }) {
 
@@ -21,8 +23,8 @@ function WeaponInput(props: { weapon: Weapon, onChange(weapon: Weapon): void }) 
         props.onChange({ ...props.weapon, weaponType });
     }
 
-    function handleDamageBonus(damageBonus: number) {
-        props.onChange({ ...props.weapon, damageBonus });
+    function handleDamage(damage: DiceExpression) {
+        props.onChange({ ...props.weapon, damage });
     }
     
     function handleAttackBonus(attackBonus: number) {
@@ -54,7 +56,7 @@ function WeaponInput(props: { weapon: Weapon, onChange(weapon: Weapon): void }) 
             <TextInput name='name' text='Name' value={props.weapon.name} onChange={handleName} />
             <TextAreaInput name='description' text='Description' value={props.weapon.description} onChange={handleDescription} />
             <DropdownInput name='weaponType' text='Weapon Type' value={props.weapon.weaponType} valueType={WeaponType} onChange={handleWeaponType} />
-            <NumberInput name='damageBonus' text='Damage Bonus' value={props.weapon.damageBonus} onChange={handleDamageBonus} />
+            <DiceInput name='damage' text='Damage' value={props.weapon.damage} onChange={handleDamage} />
             <NumberInput name='attackBonus' text='Attack Bonus' value={props.weapon.attackBonus} onChange={handleAttackBonus} />
             <NumberInput name='critRange' text='Critical Range' value={props.weapon.critRange} onChange={handleCritRange} positiveOnly />
             <NumberInput name='critMultiplier' text='Critical Multiplier' value={props.weapon.critMultiplier} onChange={handleCritMultiplier} positiveOnly />

@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import './App.css';
 import Weapon from './models/Weapon';
 import WeaponInput from './components/WeaponInput';
+import DiceExpression from './models/DiceExpression';
 
 function App() {
   const [weapon, setWeapon] = useState(new Weapon(
     'M8 Avenger',
     'Standard issue alliance military assault rifle. Has quickly become a widely adopted defense platform across the galaxy.',
     'ARifle',
-    [4],
-    0,
+    new DiceExpression('d4'),
     0,
     20,
     2,

@@ -1,10 +1,11 @@
+import DiceExpression from "./DiceExpression";
+
 class Weapon {
     constructor(
         name: string,
         description: string,
         weaponType: string,
-        damageDice: Array<number>,
-        damageBonus: number,
+        damage: DiceExpression,
         attackBonus: number,
         critRange: number,
         critMultiplier: number,
@@ -14,8 +15,7 @@ class Weapon {
             this.name = name;
             this.description = description;
             this.weaponType = weaponType;
-            this.damageDice = damageDice;
-            this.damageBonus = damageBonus;
+            this.damage = damage;
             this.attackBonus = attackBonus;
             this.critRange = critRange;
             this.critMultiplier = critMultiplier;
@@ -27,8 +27,7 @@ class Weapon {
     public name: string;
     public description: string;
     public weaponType: string;
-    public damageDice: Array<number>;
-    public damageBonus: number;
+    public damage: DiceExpression;
     public attackBonus: number;
     public critRange: number;
     public critMultiplier: number;
