@@ -5,7 +5,7 @@ class Weapon {
         name: string,
         description: string,
         weaponType: string,
-        damage: DiceExpression | undefined,
+        damage: DiceExpression,
         attackBonus: number,
         critRange: number,
         critMultiplier: number,
@@ -27,7 +27,7 @@ class Weapon {
     public name: string;
     public description: string;
     public weaponType: string;
-    public damage: DiceExpression | undefined;
+    public damage: DiceExpression;
     public attackBonus: number;
     public critRange: number;
     public critMultiplier: number;

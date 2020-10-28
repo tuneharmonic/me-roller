@@ -1,11 +1,11 @@
-import EnumType from "./EnumType";
+import KeyValue from "./KeyValue";
 
-const FireType: EnumType<string> = new EnumType<string>(
+const FireType: KeyValue<string>[] = [
     { key: "Single Shot", value: "SingleShot" },
     { key: "Semi-Automatic", value: "SemiAuto" },
     { key: "Burst Fire", value: "Burst" },
     { key: "Automatic", value: "Auto" },
     { key: "Melee", value: "Melee" }
-);
+];
 
 export default FireType;

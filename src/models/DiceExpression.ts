@@ -20,6 +20,8 @@ export default class DiceExpression {
 
     private clauses: Array<string> = [];
     private valueGroups: Array<NumberValueGroup> = [];
+
+    public static Default: DiceExpression = new DiceExpression('d4');
     
     constructor(expression: string) {
         this.Evaluate(expression);

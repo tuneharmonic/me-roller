@@ -6,6 +6,8 @@ import DiceExpression from './models/DiceExpression';
 import CharacterInput from './components/CharacterInput';
 import AppState from './models/AppState';
 import Character from './models/Character';
+import AttackRoller from './components/AttackRoller';
+import { stat } from 'fs';
 
 function App() {
   const initialState: AppState = {
@@ -18,7 +20,7 @@ function App() {
       'M8 Avenger',
       'Standard issue alliance military assault rifle. Has quickly become a widely adopted defense platform across the galaxy.',
       'ARifle',
-      DiceExpression.Parse('d4'),
+      DiceExpression.Default,
       0,
       20,
       2,
@@ -43,6 +45,8 @@ function App() {
       <WeaponInput weapon={state.weapon} onChange={setWeapon} />
       <p>Character Input:</p>
       <CharacterInput character={state.character} onChange={setCharacter} />
+      <p>Attack Roller:</p>
+      <AttackRoller weapon={state.weapon} target={state.character} />
     </div>
   );
 }

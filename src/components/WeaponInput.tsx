@@ -8,6 +8,7 @@ import TextInput from './TextInput';
 import TextAreaInput from './TextAreaInput';
 import DiceExpression from '../models/DiceExpression';
 import DiceInput from './DiceInput';
+import { KeyValueAdapter } from '../models/KeyValue';
 
 function WeaponInput(props: { weapon: Weapon, onChange(weapon: Weapon): void }) {
 
@@ -55,13 +56,13 @@ function WeaponInput(props: { weapon: Weapon, onChange(weapon: Weapon): void }) 
         <div className='WeaponInput'>
             <TextInput name='name' text='Name' value={props.weapon.name} onChange={handleName} />
             <TextAreaInput name='description' text='Description' value={props.weapon.description} onChange={handleDescription} />
-            <DropdownInput name='weaponType' text='Weapon Type' value={props.weapon.weaponType} valueType={WeaponType} onChange={handleWeaponType} />
+            <DropdownInput name='weaponType' text='Weapon Type' value={props.weapon.weaponType} valueType={WeaponType} adapter={KeyValueAdapter} onChange={handleWeaponType} />
             <DiceInput name='damage' text='Damage' value={props.weapon.damage} onChange={handleDamage} />
             <NumberInput name='attackBonus' text='Attack Bonus' value={props.weapon.attackBonus} onChange={handleAttackBonus} />
             <NumberInput name='critRange' text='Critical Range' value={props.weapon.critRange} onChange={handleCritRange} positiveOnly />
             <NumberInput name='critMultiplier' text='Critical Multiplier' value={props.weapon.critMultiplier} onChange={handleCritMultiplier} positiveOnly />
             <NumberInput name='rateOfFire' text='Rate of Fire' value={props.weapon.rateOfFire} onChange={handleRateOfFire} positiveOnly />
-            <DropdownInput name='fireType' text='Mode of Fire' value={props.weapon.fireType} valueType={FireType} onChange={handleFireType} />
+            <DropdownInput name='fireType' text='Mode of Fire' value={props.weapon.fireType} valueType={FireType} adapter={KeyValueAdapter} onChange={handleFireType} />
             <NumberInput name='recoil' text='Recoil Penalty' value={props.weapon.recoil} onChange={handleRecoil} positiveOnly />
         </div>
     );

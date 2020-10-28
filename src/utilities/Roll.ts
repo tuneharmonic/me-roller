@@ -1,5 +1,5 @@
 export default class Roll {
-    public static Die(die: number) : number {
+    public static Die(die: number = 20) : number {
         return Math.floor(Math.random() * die) + 1;
     }
 

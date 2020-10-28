@@ -1,5 +1,5 @@
-export default class Character {
-    public name: string | undefined;
-    public armorClass: number | undefined;
-    public coverStatus: number | undefined;
+export default interface Character {
+    name: string;
+    armorClass: number;
+    coverStatus: number;
 }
