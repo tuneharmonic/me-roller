@@ -1,17 +1,26 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, FocusEvent, useState } from 'react';
 import DiceExpression from '../models/DiceExpression';
 
-function DiceInput(props: { name: string, text: string, value: DiceExpression, onChange(value: DiceExpression): void }) {
+function DiceInput(props: { name: string, text: string, value: DiceExpression | undefined, onChange(value: DiceExpression): void }) {
 
-    let errorMessage: string | null = null;
+    const [errorMessage, setErrorMessage] = useState('');
 
     function handleError(error: Error) {
-        errorMessage = error.message;
+        setErrorMessage(error.message);
     }
 
-    function handleChange(event: ChangeEvent<HTMLInputElement>){
-        const expression = DiceExpression.Parse(event.target.value, handleError);
+    function handleBlur(event: FocusEvent<HTMLInputElement>) {
+        validateAndSet(props.value?.PrettyString() || '0');
+    }
+
+    function handleChange(event: ChangeEvent<HTMLInputElement>) {
+        validateAndSet(event.target.value);
+    }
+
+    function validateAndSet(expressionString: string) {
+        const expression = DiceExpression.Parse(expressionString, handleError);
         if (expression !== undefined) {
+            setErrorMessage('');
             props.onChange(expression);
         }
     }
@@ -20,10 +29,10 @@ function DiceInput(props: { name: string, text: string, value: DiceExpression, o
         <div id={props.name + '-group'} className='DiceInput'>
             <label>
                 {props.text}:
-                <input id={props.name + '-input'} value={props.value.toString()} type='text' onChange={handleChange} />
+                <input id={props.name + '-input'} value={props.value?.toString()} type='text' onChange={handleChange} onBlur={handleBlur} />
             </label>
             { 
-                errorMessage !== null
+                errorMessage !== ''
                 ? <p className="error">{errorMessage}</p>
                 : null
             }

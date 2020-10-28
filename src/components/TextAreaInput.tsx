@@ -10,9 +10,7 @@ function TextAreaInput(props: { name: string, text: string, value: string, onCha
         <div id={props.name + '-group'} className='TextAreaInput'>
             <label>
                 {props.text}:
-                <textarea id={props.name + '-input'} onChange={handleChange}>
-                    {props.value}
-                </textarea>
+                <textarea id={props.name + '-input'} onChange={handleChange} value={props.value} />
             </label>
         </div>
     );

@@ -14,26 +14,27 @@ export class DiceExpressionResult {
 
 export default class DiceExpression {
     private static diceWithOperatorExpression: RegExp = /([+-]?)(\d*)([dD]?)(\d+)/g;
-    private static invalidCharacterExpression: RegExp = /([^+\-dD\d])+([dD]{2,})+/g;
+    private static invalidCharacterExpression: RegExp = /([^+\-dD\d])/g;    //|([dD]{2,})|([dD][+-])
 
-    private expression: string;
+    private expression: string = '';
 
     private clauses: Array<string> = [];
     private valueGroups: Array<NumberValueGroup> = [];
     
     constructor(expression: string) {
-        this.expression = expression;
-        this.Evaluate();
+        this.Evaluate(expression);
     }
 
     public static Parse(expression: string, handler?: (error: any) => void): DiceExpression | undefined {
         try {
-            return new DiceExpression(expression);
+            const newExpression = new DiceExpression(expression);
+            return newExpression;
         } catch (error) {
             if (handler !== undefined) {
                 handler(error);
+            } else {
+                console.error(error);
             }
-            console.error(error);
             return undefined;
         }
     }
@@ -88,34 +89,39 @@ export default class DiceExpression {
         return this.expression;
     }
 
-    private Evaluate() {
-        if (!this.expression) {
-            throw new Error('Expression must be provided');
+    public PrettyString() {
+        let prettyString = this.valueGroups.join('');
+
+        if (this.valueGroups.length && this.valueGroups[0].positive) {
+            prettyString = prettyString.substring(1);
         }
 
+        return prettyString;
+    }
+
+    public Evaluate(expression: string) {
+
+        let allErrors = [];
         let errors;
-        if ((errors = DiceExpression.invalidCharacterExpression.exec(this.expression)) !== null && errors) {
-            console.log(errors);
-            throw new Error('Invalid characters found: ' + errors[0]);
+        while ((errors = DiceExpression.invalidCharacterExpression.exec(expression)) !== null) {
+            allErrors.push(errors[0]);
         }
-
-        if (this.expression.search(DiceExpression.diceWithOperatorExpression) === -1) {
-            throw new Error('At least one value expression must be provided');
+        if (allErrors.length) {
+            console.log(allErrors);
+            throw new Error('Invalid characters found: ' + allErrors);
         }
 
         let firstMatch = true;
         let match: RegExpExecArray | null;
-        while ((match = DiceExpression.diceWithOperatorExpression.exec(this.expression)) !== null) {
+        while ((match = DiceExpression.diceWithOperatorExpression.exec(expression)) !== null) {
+            console.log(match[0]);
+
             this.clauses.push(match[0]);    // full match
 
             // check for operator on additional clauses
             const operator = match[1];
             if (firstMatch) {
                 firstMatch = false;
-            } else {
-                if (!operator) {
-                    throw new Error('Operator must be provided for additional clauses');
-                }
             }
 
             let positive: boolean = true;
@@ -125,7 +131,7 @@ export default class DiceExpression {
 
             // check if expression or constant
             let numberValue: NumberValue;
-            const isDiceValue = match[3] !== null; // if "d" is in the match
+            const isDiceValue = match[3] !== ''; // if "d" is in the match
             if (isDiceValue) {
                 const numberOfDice = match[2] ? Number.parseInt(match[2]) : 1;
                 const faces = Number.parseInt(match[4]);
@@ -145,5 +151,7 @@ export default class DiceExpression {
 
             this.valueGroups.push(new NumberValueGroup(numberValue, positive));
         }
+
+        this.expression = expression;
     }
 }

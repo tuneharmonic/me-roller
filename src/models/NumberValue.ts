@@ -41,7 +41,7 @@ export class DiceValue implements NumberValue {
     }
 
     public toString(): string {
-        return this.numberOfDice.toString() + 'd' + this.faces.toString();
+        return (this.numberOfDice !== 1 ? this.numberOfDice.toString() : '') + 'd' + this.faces.toString();
     }
 }
 
@@ -52,5 +52,9 @@ export class NumberValueGroup {
     constructor(value: NumberValue, positive: boolean) {
         this.value = value;
         this.positive = positive;
+    }
+
+    public toString(): string {
+        return (this.positive ? '+' : '-') + this.value.toString();
     }
 }
