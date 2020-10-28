@@ -45,6 +45,7 @@ function App() {
 
   return (
     <div className="App">
+      <p className="bigTitle">Mass Effect D20 Roller</p>
       <WeaponInput weapon={state.weapon} onChange={setWeapon} />
       <CharacterInput character={state.character} onChange={setCharacter} />
       <AttackRoller weapon={state.weapon} target={state.character} attackOptions={determineAttackOptions()} />
