@@ -4,14 +4,21 @@ import Weapon from "./Weapon";
 export default interface AttackRollerProps {
     weapon: Weapon;
     target: Character;
+    attackOptions: number[];    // AttackTypes
+}
+
+export interface AttackRollerState {
+    messages: string[];
+    attackType: number;         // AttackTypes
 }
 
 export const AttackResult = {
-    Miss: 0,
-    Hit: 1,
-    Critical: 2,
-    Vorpal: 3,
-    Instant: 4
+    Failure: 0,
+    Miss: 1,
+    Hit: 2,
+    Critical: 3,
+    Vorpal: 4,
+    Instant: 5
 }
 
 export const AttackTypes = {

@@ -1,0 +1,6 @@
+.TextAreaInput textarea {
+    resize: none;
+    width: 80%;
+    height: 5em;
+    margin: 0.5em;
+}

@@ -9,6 +9,7 @@ import TextAreaInput from './TextAreaInput';
 import DiceExpression from '../models/DiceExpression';
 import DiceInput from './DiceInput';
 import { KeyValueAdapter } from '../models/KeyValue';
+import './WeaponInput.css';
 
 function WeaponInput(props: { weapon: Weapon, onChange(weapon: Weapon): void }) {
 
@@ -54,7 +55,8 @@ function WeaponInput(props: { weapon: Weapon, onChange(weapon: Weapon): void }) 
 
     return (
         <div className='WeaponInput'>
-            <TextInput name='name' text='Name' value={props.weapon.name} onChange={handleName} />
+            <p className='title'>Weapon Input</p>
+            <TextInput name='weapon-name' text='Name' value={props.weapon.name} onChange={handleName} />
             <TextAreaInput name='description' text='Description' value={props.weapon.description} onChange={handleDescription} />
             <DropdownInput name='weaponType' text='Weapon Type' value={props.weapon.weaponType} valueType={WeaponType} adapter={KeyValueAdapter} onChange={handleWeaponType} />
             <DiceInput name='damage' text='Damage' value={props.weapon.damage} onChange={handleDamage} />

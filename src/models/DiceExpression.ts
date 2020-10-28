@@ -14,7 +14,7 @@ export class DiceExpressionResult {
 
 export default class DiceExpression {
     private static diceWithOperatorExpression: RegExp = /([+-]?)(\d*)([dD]?)(\d+)/g;
-    private static invalidCharacterExpression: RegExp = /([^+\-dD\d])/g;    //|([dD]{2,})|([dD][+-])
+    private static invalidCharacterExpression: RegExp = /([^+\-dD\d])/g;
 
     private expression: string = '';
 
@@ -116,7 +116,6 @@ export default class DiceExpression {
         let firstMatch = true;
         let match: RegExpExecArray | null;
         while ((match = DiceExpression.diceWithOperatorExpression.exec(expression)) !== null) {
-            console.log(match[0]);
 
             this.clauses.push(match[0]);    // full match
 

@@ -7,7 +7,7 @@ import CharacterInput from './components/CharacterInput';
 import AppState from './models/AppState';
 import Character from './models/Character';
 import AttackRoller from './components/AttackRoller';
-import { stat } from 'fs';
+import { FireTypeToAttackTypeMap } from './models/AttackRollerProps';
 
 function App() {
   const initialState: AppState = {
@@ -39,14 +39,15 @@ function App() {
     setState({ ...state, weapon });
   }
 
+  function determineAttackOptions(): number[] {
+    return FireTypeToAttackTypeMap.get(state.weapon.fireType) || [0];
+  }
+
   return (
     <div className="App">
-      <p>Weapon Input:</p>
       <WeaponInput weapon={state.weapon} onChange={setWeapon} />
-      <p>Character Input:</p>
       <CharacterInput character={state.character} onChange={setCharacter} />
-      <p>Attack Roller:</p>
-      <AttackRoller weapon={state.weapon} target={state.character} />
+      <AttackRoller weapon={state.weapon} target={state.character} attackOptions={determineAttackOptions()} />
     </div>
   );
 }

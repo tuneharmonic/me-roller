@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from 'react';
+import './TextAreaInput.css';
 
 function TextAreaInput(props: { name: string, text: string, value: string, onChange(value: string): void }) {
 

@@ -5,6 +5,7 @@ import TextInput from './TextInput';
 import Character from '../models/Character';
 import CoverType from '../models/CoverType';
 import { KeyValueAdapter } from '../models/KeyValue';
+import './CharacterInput.css';
 
 function CharacterInput(props: { character: Character, onChange(character: Character): void }) {
 
@@ -22,7 +23,8 @@ function CharacterInput(props: { character: Character, onChange(character: Chara
 
     return (
         <div className='CharacterInput'>
-            <TextInput name='name' text='Name' value={props.character.name || ''} onChange={handleName} />
+            <p className='title'>Character Input</p>
+            <TextInput name='character-name' text='Name' value={props.character.name || ''} onChange={handleName} />
             <NumberInput name='armorClass' text='Armor Class' value={props.character.armorClass || 0} onChange={handleArmorClass} />
             <DropdownInput name='coverStatus' text='Cover Status' value={props.character.coverStatus || 0} valueType={CoverType} adapter={KeyValueAdapter} onChange={handleCoverStatus} />
         </div>
