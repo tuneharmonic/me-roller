@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AttackRollerProps, { AttackResult, AttackRollerState, AttackTypes } from '../models/AttackRollerProps';
+import AttackRollerProps, { AttackResult, AttackTypes } from '../models/AttackRollerProps';
 import KeyValue from '../models/KeyValue';
 import Roll from '../utilities/Roll';
 import DropdownInput from './DropdownInput';
@@ -7,50 +7,42 @@ import './AttackRoller.css';
 
 function AttackRoller(props: AttackRollerProps) {
 
-    let currentMessages: string[] = [];
-    let currentRecoil = 0;
-    let currentAttackType = props.attackOptions[0];
-    const [attackRollerState, setAttackRollerState] = useState<AttackRollerState>({ messages: [], attackType: props.attackOptions[0] });
-
-    function setMessages(messages: string[]) {
-        setAttackRollerState({ ...attackRollerState, messages });
-    }
+    let messageBuffer: string[] = [];
+    let currentRecoil: number = 0;
+    
+    const [messages, setMessages] = useState<string[]>([]);
 
     function appendMessage(message: string) {
-        currentMessages.push(message);
-        setMessages(currentMessages);
+        messageBuffer.push(message);
     }
 
     function resetMessages() {
         setMessages([]);
+        messageBuffer = [];
     }
 
-    function setCurrentRecoil(recoil: number) {
-        currentRecoil = recoil;
-        //setAttackRollerState({ ...attackRollerState, currentRecoil });
+    function pushMessages() {
+        setMessages(messageBuffer);
+        messageBuffer = [];
     }
 
     function incrementRecoil() {
-        setCurrentRecoil(currentRecoil + props.weapon.recoil);
+        currentRecoil += props.weapon.recoil;
+        console.log(currentRecoil);
+        
     }
 
     function resetRecoil() {
-        setCurrentRecoil(0);
-    }
-
-    function setAttackType(attackType: number) {
-        currentAttackType = attackType;
-        //setAttackRollerState({ ...attackRollerState, attackType })
+        currentRecoil = 0;
     }
 
     function makeAttack() {
-
         resetMessages();
 
         let firstVolleyDamage;
         let secondVolleyDamage;
         let thirdVolleyDamage;
-        switch (currentAttackType) { //attackRollerState.attackType) {
+        switch (props.attackTypeGroup.attackType) {
             case AttackTypes.SingleShot:
                 appendMessage('Rolling single-shot attack...');
                 fireShot(1);
@@ -95,7 +87,8 @@ function AttackRoller(props: AttackRollerProps) {
             default:
                 break;
         }
-
+        
+        pushMessages();
         resetRecoil();
     }
 
@@ -239,6 +232,10 @@ function AttackRoller(props: AttackRollerProps) {
         return { key: AttackTypes.Name[attackOption], value: attackOption }
     }
 
+    function setAttackType(attackType: number) {
+        props.onChange({ ...props.attackTypeGroup, attackType });
+    }
+
     function handleAttackType(typeString: string) {
         setAttackType(Number.parseInt(typeString));
     }
@@ -246,11 +243,11 @@ function AttackRoller(props: AttackRollerProps) {
     return (
         <div className='AttackRoller'>
             <p className='title'>Attack Roller</p>
-            <DropdownInput name='attackType' text='Attack Type' value={attackRollerState.attackType} valueType={props.attackOptions} adapter={adaptOptions} onChange={handleAttackType} />
-            <button type="button" onClick={e => makeAttack()}>Make Attack</button>
+            <DropdownInput name='attackType' label='Attack Type' value={props.attackTypeGroup.attackType} valueType={props.attackTypeGroup.attackTypeOptions} adapter={adaptOptions} onChange={handleAttackType} />
+            <button type="button" onClick={() => makeAttack()}>Make Attack</button>
             {
-                attackRollerState.messages.map((message, i) => {
-                    return <p key={i}>{message}</p>;
+                messages.map((message, i) => {
+                    return <p key={i}>{message}</p>
                 })
             }
         </div>

@@ -4,7 +4,7 @@ import KeyValue from '../models/KeyValue';
 function DropdownInput(
     props: {
         name: string,
-        text: string,
+        label: string,
         value: any,
         valueType: Array<any>,
         adapter(sourceType: any): KeyValue<any>,
@@ -22,7 +22,7 @@ function DropdownInput(
     return (
         <div id={props.name + '-group'} className='DropdownInput'>
             <label>
-                {props.text}:
+                {props.label}:
                 <select id={props.name + '-input'} value={props.value.toString()} onChange={handleChange}>
                     { 
                         props.valueType.map(k => {

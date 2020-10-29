@@ -56,16 +56,16 @@ function WeaponInput(props: { weapon: Weapon, onChange(weapon: Weapon): void }) 
     return (
         <div className='WeaponInput'>
             <p className='title'>Weapon Input</p>
-            <TextInput name='weapon-name' text='Name' value={props.weapon.name} onChange={handleName} />
-            <TextAreaInput name='description' text='Description' value={props.weapon.description} onChange={handleDescription} />
-            <DropdownInput name='weaponType' text='Weapon Type' value={props.weapon.weaponType} valueType={WeaponType} adapter={KeyValueAdapter} onChange={handleWeaponType} />
-            <DiceInput name='damage' text='Damage' value={props.weapon.damage} onChange={handleDamage} />
-            <NumberInput name='attackBonus' text='Attack Bonus' value={props.weapon.attackBonus} onChange={handleAttackBonus} />
-            <NumberInput name='critRange' text='Critical Range' value={props.weapon.critRange} onChange={handleCritRange} positiveOnly />
-            <NumberInput name='critMultiplier' text='Critical Multiplier' value={props.weapon.critMultiplier} onChange={handleCritMultiplier} positiveOnly />
-            <NumberInput name='rateOfFire' text='Rate of Fire' value={props.weapon.rateOfFire} onChange={handleRateOfFire} positiveOnly />
-            <DropdownInput name='fireType' text='Mode of Fire' value={props.weapon.fireType} valueType={FireType} adapter={KeyValueAdapter} onChange={handleFireType} />
-            <NumberInput name='recoil' text='Recoil Penalty' value={props.weapon.recoil} onChange={handleRecoil} positiveOnly />
+            <TextInput name='weapon-name' label='Name' value={props.weapon.name} onChange={handleName} />
+            <TextAreaInput name='description' label='Description' value={props.weapon.description} onChange={handleDescription} />
+            <DropdownInput name='weaponType' label='Weapon Type' value={props.weapon.weaponType} valueType={WeaponType} adapter={KeyValueAdapter} onChange={handleWeaponType} />
+            <DiceInput name='damage' label='Damage' value={props.weapon.damage} onChange={handleDamage} />
+            <NumberInput name='attackBonus' label='Attack Bonus' value={props.weapon.attackBonus} onChange={handleAttackBonus} />
+            <NumberInput name='critRange' label='Critical Range' value={props.weapon.critRange} onChange={handleCritRange} positiveOnly />
+            <NumberInput name='critMultiplier' label='Critical Multiplier' value={props.weapon.critMultiplier} onChange={handleCritMultiplier} positiveOnly />
+            <NumberInput name='rateOfFire' label='Rate of Fire' value={props.weapon.rateOfFire} onChange={handleRateOfFire} positiveOnly />
+            <DropdownInput name='fireType' label='Mode of Fire' value={props.weapon.fireType} valueType={FireType} adapter={KeyValueAdapter} onChange={handleFireType} />
+            <NumberInput name='recoil' label='Recoil Penalty' value={props.weapon.recoil} onChange={handleRecoil} positiveOnly />
         </div>
     );
 }

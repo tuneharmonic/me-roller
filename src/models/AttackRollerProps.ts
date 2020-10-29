@@ -4,12 +4,13 @@ import Weapon from "./Weapon";
 export default interface AttackRollerProps {
     weapon: Weapon;
     target: Character;
-    attackOptions: number[];    // AttackTypes
+    attackTypeGroup: AttackTypeGroup;
+    onChange(attackTypeGroup: AttackTypeGroup): void;
 }
 
-export interface AttackRollerState {
-    messages: string[];
-    attackType: number;         // AttackTypes
+export interface AttackTypeGroup {
+    attackTypeOptions: number[];    // AttackTypes
+    attackType: number; // AttackTypes
 }
 
 export const AttackResult = {

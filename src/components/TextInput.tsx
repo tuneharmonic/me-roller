@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 
-function TextInput(props: { name: string, text: string, value: string, onChange(value: string): void }) {
+function TextInput(props: { name: string, label: string, value: string, onChange(value: string): void }) {
 
     function handleChange(event: ChangeEvent<HTMLInputElement>){
         props.onChange(event.target.value);
@@ -9,7 +9,7 @@ function TextInput(props: { name: string, text: string, value: string, onChange(
     return (
         <div id={props.name + '-group'} className='TextInput'>
             <label>
-                {props.text}:
+                {props.label}:
                 <input id={props.name + '-input'} value={props.value} type='text' onChange={handleChange} />
             </label>
         </div>

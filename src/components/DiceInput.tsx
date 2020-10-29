@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FocusEvent, useState } from 'react';
 import DiceExpression from '../models/DiceExpression';
 
-function DiceInput(props: { name: string, text: string, value: DiceExpression | undefined, onChange(value: DiceExpression): void }) {
+function DiceInput(props: { name: string, label: string, value: DiceExpression | undefined, onChange(value: DiceExpression): void }) {
 
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -28,7 +28,7 @@ function DiceInput(props: { name: string, text: string, value: DiceExpression | 
     return (
         <div id={props.name + '-group'} className='DiceInput'>
             <label>
-                {props.text}:
+                {props.label}:
                 <input id={props.name + '-input'} value={props.value?.toString()} type='text' onChange={handleChange} onBlur={handleBlur} />
             </label>
             { 

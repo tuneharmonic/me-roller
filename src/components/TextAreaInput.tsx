@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import './TextAreaInput.css';
 
-function TextAreaInput(props: { name: string, text: string, value: string, onChange(value: string): void }) {
+function TextAreaInput(props: { name: string, label: string, value: string, onChange(value: string): void }) {
 
     function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
         props.onChange(event.target.value)
@@ -10,7 +10,7 @@ function TextAreaInput(props: { name: string, text: string, value: string, onCha
     return (
         <div id={props.name + '-group'} className='TextAreaInput'>
             <label>
-                {props.text}:
+                {props.label}:
                 <textarea id={props.name + '-input'} onChange={handleChange} value={props.value} />
             </label>
         </div>

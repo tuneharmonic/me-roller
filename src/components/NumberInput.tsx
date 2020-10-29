@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import './NumberInput.css';
 
-function NumberInput(props: { name: string, text: string, value: number, positiveOnly?: boolean, onChange(value: number): void }) {
+function NumberInput(props: { name: string, label: string, value: number, positiveOnly?: boolean, onChange(value: number): void }) {
     function validate(value: number): boolean {
         let valid = true;
 
@@ -28,7 +28,7 @@ function NumberInput(props: { name: string, text: string, value: number, positiv
     return (
         <div id={props.name + '-group'} className='NumberInput'>
             <label>
-                {props.text}:
+                {props.label}:
                 <input id={props.name + '-input'} value={props.value} type='number' onChange={handleChange} />
             </label>
         </div>
